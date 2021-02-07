@@ -1,0 +1,2594 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Flooric Furniture Store</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap');
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Poppins', sans-serif;
+			text-decoration: none;
+		}
+
+		html, body {
+			font-size: 20px;
+			min-width: 1024px;
+		}
+
+		.top-menu:after, .promo-menu:after, .submenu-flag:after, .menu-left:after, .button:after, .special-holder:after, .our-products-header:after, .name-tittle:after, .products-list:after, .products-leaf:after, .design-list:after, .brands:after, .brands-list:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		.top-menu {
+			background-color: #f2c700;
+			font-weight: 600;
+			font-size: 0.7em;
+		}
+
+		.holder {
+			width: 90%;
+			margin: 0 auto;
+			max-width: 1440px;
+			list-style: none inside;
+		}
+
+		.top-tittle {
+			height: 3.5em;
+			padding: 1em 0;
+		}
+
+			.top-tittle + .top-tittle {
+				margin-left: 2.5em;
+			}
+
+			.top-tittle:nth-child(-n+7) {
+				float: left;
+			}
+
+			.top-tittle:nth-child(n+8) {
+				float: right;
+				position: relative;
+				padding: 0;
+				padding: 1em 0;
+			}
+
+				.top-tittle:nth-child(n+8):before {
+					content: '';
+					display: block;
+					float: left;
+					height: 2.5em;
+					width: 2.5em;
+					margin-top: -0.2em;
+					margin-right: 0.7em;
+					background: url(img/sprite.svg) no-repeat;
+					background-size: 25rem 25rem;
+					transition: all 200ms linear;
+				}
+
+				.top-tittle:nth-child(n+8):hover .menu-link, .menu-link:hover {
+					color: white;
+				}
+
+			.top-tittle.account:before {
+				background-position: -9em -0.6em;
+			}
+
+			.top-tittle.cart:before {
+				background-position: 0 -3.6em;
+			}
+
+			.top-tittle.account:hover:before, .top-tittle.cart:hover:before {
+				filter: invert(100%);
+			}
+
+		.menu-link {
+			position: relative;
+			display: block;
+			overflow: hidden;
+			cursor: pointer;
+			transition: all 200ms linear;
+		}
+
+			.menu-link:before {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 0.1em;
+				bottom: 0;
+				right: 100%;
+				transition: all 300ms linear;
+			}
+
+			.menu-link:hover {
+				text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+			}
+
+				.menu-link:hover:before {
+					right: 0;
+					background-color: white;
+				}
+
+		.submenu {
+			position: absolute;
+			right: 0;
+			top: 100%;
+			padding: 1.5em;
+			min-width: 18em;
+			font-weight: 400;
+			font-size: 1em;
+			background-color: white;
+			visibility: hidden;
+			list-style: none inside;
+		}
+
+		.top-tittle:hover .submenu {
+			visibility: visible;
+			cursor: pointer;
+			box-shadow: 0 0 0.6em rgba(38,50,56,0.3);
+		}
+
+		.flag, .submenu-currency li {
+			list-style: none inside;
+			float: left;
+		}
+
+		.submenu-tittle:nth-child(-n+4) {
+			color: #ccccd5;
+		}
+
+		.submenu-tittle + .submenu-tittle {
+			margin-top: 0.7em;
+		}
+
+		.flag + .flag {
+			margin-left: 0.5em;
+		}
+
+		.flag {
+			transition: all 200ms linear;
+		}
+
+			.flag:hover {
+				transform: scale(1.5);
+			}
+
+			.flag:before {
+				content: '';
+				display: block;
+				float: left;
+				height: 1.2em;
+				width: 1.6em;
+				background: url(img/sprite.svg) no-repeat;
+				background-size: 25rem 25rem;
+				transition: all 200ms linear;
+			}
+
+			.flag.ru:before {
+				background-position-x: 52%;
+			}
+
+			.flag.fr:before {
+				background-position-x: 56.5%;
+			}
+
+			.flag.kz:before {
+				background-position-x: 61%;
+			}
+
+		.currency-money {
+			display: inline-block;
+			padding: 0.2em 0.6em;
+			color: #999;
+			border: 1px solid transparent;
+			border-radius: 5px;
+			transition: all 200ms linear;
+		}
+
+			.currency-money:hover {
+				border-color: #ffd200;
+				color: #ffd200;
+			}
+
+			.currency-money + .currency-money {
+				margin-left: 0.8em;
+			}
+
+			.currency-money.choosen {
+				border-color: #999;
+			}
+
+		.promo-menu {
+			padding: 2em 0;
+			font-weight: 400;
+			background-color: #ffd200;
+		}
+
+		.promo-logo {
+			float: left;
+			width: 14%;
+			cursor: pointer;
+		}
+
+			.promo-logo img {
+				width: 100%;
+			}
+
+		.promo-list {
+			width: 60%;
+			float: left;
+			list-style: none inside;
+		}
+
+		.promo-tittle {
+			float: left;
+			cursor: pointer;
+			font-size: 0.7em;
+			width: 10em;
+			margin-left: 1em;
+			transition: all 200ms linear;
+		}
+
+			.promo-tittle:hover {
+				filter: invert(1);
+			}
+
+		.link:before {
+			content: '';
+			display: block;
+			float: left;
+			height: 3em;
+			width: 3em;
+			margin-right: 0.5em;
+			background: url(img/sprite.svg) no-repeat;
+			background-size: 25rem 25rem;
+			transition: all 200ms linear;
+		}
+
+		.link.money:before {
+			background-position-x: 0;
+		}
+
+		.link.anytime:before {
+			background-position-x: 9%;
+		}
+
+		.link.user:before {
+			background-position-x: 18%;
+		}
+
+		.banner-wrapper {
+			padding: 2em 0;
+			background: url('img/pattern.png');
+		}
+
+		.menu-left {
+			width: 20%;
+			min-width: 9em;
+			float: left;
+			margin-right: 5%;
+		}
+
+		.menu-links {
+			width: 100%;
+			border: 2px solid #ffd200;
+			font-size: 0.7em;
+			background-color: #fff;
+			position: relative;
+			float: left;
+		}
+
+		.menu-links {
+			height: 40em;
+		}
+
+			.menu-links * {
+				list-style: none inside;
+			}
+
+		.category-item {
+			padding: 0 1.2em;
+		}
+
+		.categories .category-link {
+			color: #999999;
+			line-height: 3em;
+			transition: all 200ms linear;
+		}
+
+			.categories .category-link:hover {
+				color: #ffd200;
+			}
+
+		.links-name {
+			line-height: 3em;
+			padding: 0 1em;
+			background-color: #ffd200;
+			font-size: 1.1em;
+		}
+
+		.consist-list:after {
+			content: '';
+			display: block;
+			float: right;
+			width: 0.5em;
+			height: 0.5em;
+			border-right: 0.1em solid #999999;
+			border-bottom: 0.1em solid #999999;
+			transform: rotateZ(-45deg);
+			margin-top: 1.2em;
+		}
+
+		.category-item:hover .consist-list:after {
+			border-color: #ffd200;
+		}
+
+		.pop-up-list {
+			position: absolute;
+			top: 3.1em;
+			left: 50%;
+			background-color: white;
+			width: 40em;
+			padding: 1.5em;
+			box-shadow: 0 0.1em 0.4em rgba(0, 0, 0, 0.1);
+			opacity: 0;
+			transition: all 400ms linear;
+		}
+
+		.category-item:hover .pop-up-list {
+			opacity: 1;
+			left: 98%;
+		}
+
+		.pop-up-list:before {
+			display: block;
+			content: '';
+			position: absolute;
+			width: 0;
+			top: 1em;
+			left: -1.4em;
+			border: solid 0.7em transparent;
+			border-right: solid 0.7em #cccccc;
+			overflow: visible;
+		}
+
+		.pop-up-list-item > .category-link {
+			display: block;
+			line-height: 2.5em;
+			margin-bottom: 1.2em;
+			color: #666;
+			font-weight: 600;
+			text-align: left;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		}
+
+		.pop-up-list .pop-up-list-item {
+			width: 33.3%;
+			float: left;
+			padding: 0 0.5em;
+		}
+
+		.category-link.secondary-item {
+			line-height: 2em;
+		}
+
+		.secondary-item:before {
+			display: inline-block;
+			vertical-align: middle;
+			content: '';
+			width: 0;
+			border: solid 0.2em transparent;
+			border-left: solid 0.3em #999999;
+			overflow: visible;
+		}
+
+		.banner {
+			height: 28em;
+			border: 1px solid #cccccc;
+			overflow: hidden;
+		}
+
+		.banner-content {
+			width: 300%;
+			height: 100%;
+			animation: banner-move 8s linear infinite alternate;
+		}
+
+			.banner-content li {
+				display: block;
+				width: 33.3%;
+				height: 100%;
+				float: left;
+			}
+
+		.banner-img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+
+		@keyframes banner-move {
+			from {
+				margin-left: 0;
+			}
+
+			30% {
+				margin-left: 0;
+			}
+
+			35% {
+				margin-left: -100%;
+			}
+
+			65% {
+				margin-left: -100%;
+			}
+
+			70% {
+				margin-left: -200%;
+			}
+
+			100% {
+				margin-left: -200%;
+			}
+		}
+
+		.content-wrapper {
+			margin: 2em 0;
+		}
+
+		.content-right {
+			float: right;
+			width: 75%;
+		}
+
+		.menu-left h3 {
+			margin-bottom: 0.5em;
+		}
+
+		.content-right {
+			float: right;
+			width: 75%;
+		}
+
+		.ml-latest-products .products-list {
+			margin: 0;
+		}
+
+		.ml-latest-products .product-wrapper {
+			overflow: hidden;
+			list-style: none inside;
+			margin: 0.5em 0;
+		}
+
+		.ml-latest-products .products-image {
+			width: 40%;
+			float: left;
+		}
+
+		.ml-latest-products .product-description {
+			float: right;
+			width: 60%;
+			padding-left: 5%;
+		}
+
+		.ml-coupon {
+			margin: 1em auto;
+			position: relative;
+			width: 100%;
+			overflow: hidden;
+			cursor: pointer;
+			background-color: #ffd200;
+			padding: 0.5em;
+		}
+
+			.ml-coupon:before {
+				content: '';
+				display: block;
+				padding-top: 100%;
+			}
+
+		.coupon-body {
+			position: absolute;
+			top: 5%;
+			left: 5%;
+			right: 5%;
+			bottom: 5%;
+			border: 1px dashed black;
+			background-color: #ffd200;
+			text-align: center;
+		}
+
+		.coupon-content {
+			position: absolute;
+			text-align: center;
+			width: 95%;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.coupon-body .coupon-title, .coupon-code {
+			font-size: 0.7em;
+			display: block;
+		}
+
+		.coupon-title, .discount, .coupon-code {
+			transition: all 200ms linear;
+		}
+
+		.coupon-body .coupon-title:before, .coupon-body .coupon-title:after {
+			content: '';
+			display: inline-block;
+			width: 25%;
+			height: 1px;
+			vertical-align: middle;
+			background-color: black;
+		}
+
+		.coupon-body .coupon-title:before {
+			margin-right: 4%;
+		}
+
+		.coupon-body .coupon-title:after {
+			margin-left: 4%;
+		}
+
+		.coupon-body .coupon-title {
+			display: block;
+			background-color: #ffd200;
+		}
+
+		.coupon-body .discount {
+			display: block;
+			font-size: 1.8em;
+			font-weight: 600;
+			margin: 5% 0;
+		}
+
+		.coupon-body .promocode {
+			font-weight: 600;
+			font-size: 1.1em;
+			display: inline-block;
+		}
+
+		.ml-coupon:hover .discount {
+			text-shadow: 2px 2px 0 #fff, 4px 4px 0 #000;
+		}
+
+
+		.ml-product-description ul {
+			list-style: none inside;
+		}
+
+		.ml-deals .leaf-holder {
+			float: right;
+			margin: 0;
+			width: 40%;
+		}
+
+		.ml-deals .product-wrapper {
+			width: 100%;
+			margin: 0;
+			list-style: none inside;
+		}
+
+		.ml-deals .products-list {
+			padding-top: 3.5em;
+		}
+
+		.ml-deals .leaf-holder .leaf-item {
+			width: 45%;
+		}
+
+			.ml-deals .leaf-holder .leaf-item + .leaf-item {
+				margin-left: 0.3em;
+			}
+
+		.ml-deals .product-description {
+			background-color: #f8f8f8;
+		}
+
+		.product-price {
+			display: inline-block;
+			margin-bottom: 1em;
+		}
+
+			.product-price.special-price {
+				color: red;
+			}
+
+		.last-price {
+			position: relative;
+			font-size: 0.7em;
+			color: #333;
+		}
+
+			.last-price:after {
+				position: absolute;
+				left: -0.2em;
+				bottom: 0.6em;
+				content: '';
+				display: block;
+				border-bottom: 1px solid red;
+				transform: rotateZ(5deg);
+				width: 40px;
+			}
+
+		.timer {
+			border-top: 1px solid #cccccc;
+			background-color: #f8f8f8;
+			padding: 1em 2% 0 2%;
+			height: 5em;
+		}
+
+			.timer .time {
+				float: left;
+				width: calc((100% - 4%) / 3);
+				font-size: 0.7em;
+				list-style: none inside;
+				color: #333;
+				padding: 2%;
+				text-align: center;
+				border: 1px solid #cccccc;
+				border-radius: 0.4em;
+				background-color: #f8f8f8;
+			}
+
+		.time + .time {
+			margin-left: 2%;
+		}
+
+		.units, .tens {
+			display: inline-block;
+			overflow: hidden;
+		}
+
+		.timer-measure {
+			display: block;
+			text-align: center;
+			margin: 0 auto;
+		}
+
+		.units:before, .tens:before {
+			display: block;
+			font-size: 1.4em;
+			line-height: 1.4em;
+			font-weight: 600;
+			overflow: hidden;
+			width: 0.6em;
+		}
+
+		.units:before {
+			content: '9';
+			animation: units-move linear infinite;
+		}
+
+		.tens:before {
+			content: '5';
+			animation: tens-move linear infinite normal;
+		}
+
+		.time.hours .units:before {
+			animation-duration: 86400s;
+		}
+
+
+		.time.minutes .tens:before {
+			animation-duration: 3600s;
+		}
+
+		.time.minutes .units:before {
+			animation-duration: 600s;
+			animation-delay: 29.5s;
+		}
+
+		.time.seconds .tens:before {
+			animation-duration: 60s;
+			animation-delay: 4.5s;
+		}
+
+		.time.seconds .units:before {
+			animation-duration: 10s;
+		}
+
+		@keyframes tens-move {
+			0% {
+				content: '5';
+			}
+
+			16.6666667% {
+				content: '4';
+			}
+
+			33.33333334% {
+				content: '3'
+			}
+
+			50% {
+				content: '2'
+			}
+
+			66.6666667% {
+				content: '1'
+			}
+
+			83.33333334% {
+				content: '0'
+			}
+		}
+
+		@keyframes units-move {
+			0% {
+				content: '9';
+			}
+
+			10% {
+				content: '8';
+			}
+
+			20% {
+				content: '7';
+			}
+
+			30% {
+				content: '6';
+			}
+
+			40% {
+				content: '5';
+			}
+
+			50% {
+				content: '4';
+			}
+
+			60% {
+				content: '3';
+			}
+
+			70% {
+				content: '2';
+			}
+
+			80% {
+				content: '1';
+			}
+
+			90% {
+				content: '0';
+			}
+		}
+
+
+		.ml-catagory {
+			position: relative;
+			transition: all 200ms linear;
+		}
+
+		.cat-select {
+			position: relative;
+			overflow: hidden;
+			border: 1px solid #cccccc;
+			border-radius: 0.3em;
+			font-size: 0.8em;
+			line-height: 2em;
+			padding: 0 0.7em;
+		}
+
+			.cat-select:before {
+				content: '';
+				position: absolute;
+				border-right: 1px solid #cccccc;
+				height: 2em;
+				right: 2em;
+			}
+
+			.cat-select:after {
+				content: '';
+				position: absolute;
+				border-right: 2px solid black;
+				border-bottom: 2px solid black;
+				transform: rotateZ(45deg);
+				height: 0.4em;
+				width: 0.4em;
+				right: 0.8em;
+				top: 0.6em;
+			}
+
+		.ml-catagory .catagories {
+			background-color: white;
+			display: none;
+		}
+
+		.ml-catagory:hover .catagories {
+			height: auto;
+			opacity: 1;
+			display: block;
+		}
+
+		.catagories {
+			position: absolute;
+			list-style: none inside;
+			font-size: 0.7em;
+			color: #333;
+			line-height: 2.5em;
+			box-shadow: 0 0 6px rgba(0,0,0,0.1);
+			border-radius: 0.3em;
+			padding: 0.5em;
+			height: auto;
+			opacity: 0;
+			width: 100%;
+			transition: all 200ms linear;
+		}
+
+		.catagory-item {
+			cursor: pointer;
+			background-image: linear-gradient(to right, #ffd200 50%,#fff 49%);
+			background-size: 200% 200%;
+			background-position: 100% 100%;
+			padding: 0 0.3em;
+			transition: all 200ms linear;
+		}
+
+			.catagory-item:hover {
+				color: white;
+				background-size: 200% 200%;
+				background-position: 0 0;
+			}
+
+		.descrip-header {
+			margin: 0.5em 0;
+		}
+
+		.descrip {
+			margin: 1em 0;
+		}
+
+			.descrip:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+		.descrip-attr, .descrip-way {
+			font-size: 0.7em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.descrip-attr {
+			width: 50%;
+			float: left;
+			line-height: 2.8em;
+		}
+
+		.descrip-content-holder {
+			float: left;
+			margin-right: 0.4em;
+			height: 2.7em;
+			width: 2.7em;
+			padding: 0.3em;
+			border: 1.5px solid transparent;
+			border-radius: 50%;
+			overflow: hidden;
+			cursor: pointer;
+			transition: all 200ms linear;
+			line-height: 2.9em;
+		}
+
+			.descrip-content-holder:hover {
+				border-color: #ffd200;
+			}
+
+		.descrip-content {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			border-radius: 50%;
+		}
+
+			.descrip-content.red {
+				background-color: #e53935;
+			}
+
+			.descrip-content.green {
+				background-color: #43A047;
+			}
+
+			.descrip-content.blue {
+				background-color: #1E88E5;
+			}
+
+			.descrip-content.violet {
+				background-color: #8E24AA;
+			}
+
+			.descrip-content.orange {
+				background-color: #FB8C00;
+			}
+
+			.descrip-content.gray {
+				background-color: #757575;
+			}
+
+		.descrip.vendor .descrip-content {
+			background-image: url('img/sprite.svg');
+			background-size: 24rem 24rem;
+			background-position-y: -2.9em;
+		}
+
+		.descrip-content.apple {
+			background-position-x: -45.3em;
+		}
+
+		.descrip-content.yandex {
+			background-position-x: -53.4em;
+		}
+
+		.descrip-content.microsoft {
+			background-position-x: -48em;
+		}
+
+		.descrip-content.google {
+			background-position-x: -56.2em;
+		}
+
+		.descrip-content.ibm {
+			background-position-x: -50.7em;
+		}
+
+		.descrip-content.huawei {
+			background-position-x: -59em;
+		}
+
+		.descrip-way {
+			position: relative;
+			line-height: 2.2em;
+		}
+
+			.descrip-way:before {
+				content: '';
+				display: block;
+				float: left;
+				line-height: 2.2em;
+				height: 1.2em;
+				width: 1.2em;
+				border: 0.15em solid #dce3f0;
+				border-radius: 0.3em;
+				margin-right: 0.5em;
+				margin-top: 0.2em;
+				cursor: pointer;
+				transition: all 100ms linear;
+			}
+
+			.descrip-way:hover:before {
+				border-color: #ffd200;
+			}
+
+			.descrip-way.choosen:before {
+				background-color: #ffd200;
+				border-color: #ffd200;
+			}
+
+			.descrip-way.choosen:after {
+				content: '';
+				position: absolute;
+				top: 0.7em;
+				left: 0.5em;
+				display: block;
+				width: 0.4em;
+				height: 0.2em;
+				border-left: 0.15em solid white;
+				border-bottom: 0.15em solid white;
+				transform: rotateZ(-45deg);
+			}
+
+		.feature-entry {
+			width: 100%;
+			border: 0.2em solid #F2F2F2;
+			padding: 0.5em;
+			cursor: pointer;
+			list-style: none inside;
+			margin: 0.5em 0;
+			transition: all 200ms linear;
+		}
+
+			.feature-entry:hover {
+				border-color: #ffd200;
+			}
+
+		.feature:before {
+			content: '';
+			display: block;
+			float: left;
+			background: url('img/sprite.svg') no-repeat center;
+			height: 3.5em;
+			width: 2.5em;
+			margin-right: 5%;
+			background-position-y: -4.9em;
+			background-size: 25rem 25rem;
+			filter: grayscale(1);
+		}
+
+		.feature:hover:before {
+			filter: contrast(1);
+		}
+
+		.feature.ship:before {
+			background-position-x: -5em;
+		}
+
+		.feature.money:before {
+			background-position-x: -10em;
+		}
+
+		.feature.support:before {
+			background-position-x: -15em;
+		}
+
+		.feat-text {
+			color: #999;
+			font-size: 0.6em;
+			height: 2.8em;
+			overflow: hidden;
+		}
+
+		.feat-name, .client-name {
+			line-height: 2.2em;
+			font-size: 0.8em;
+			font-weight: 600;
+			overflow: hidden;
+			white-space: nowrap;
+			color: #333;
+		}
+
+		.reviews-list {
+			list-style: none inside;
+			border: 0.2em solid #F2F2F2;
+		}
+
+		.review-entry {
+			padding: 1em 5%;
+			text-align: center;
+			position: relative;
+		}
+
+			.review-entry + .review-entry {
+				border-top: 0.05em dashed #F2F2F2;
+			}
+
+		.client-prof {
+			color: #999;
+			font-size: 0.6em;
+		}
+
+		.review-text {
+			font-size: 0.6em;
+			color: #666;
+			line-height: 1.5em;
+		}
+
+		.client-photo {
+			width: 45%;
+			border-radius: 50%;
+		}
+
+		.client-photo-wrapper:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 1%;
+			left: 12%;
+			background: url('img/sprite.svg');
+			background-size: 600%;
+			width: 30%;
+			height: 30%;
+			background-position: -500% 0;
+		}
+
+		.special-products {
+			position: relative;
+			width: 100%;
+			overflow: hidden;
+		}
+
+			.special-products:before {
+				content: '';
+				display: block;
+				padding-top: 50%;
+			}
+
+		.special-holder {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+		}
+
+		.three-banner {
+			float: left;
+			width: calc(50% - 0.5em);
+			background-repeat: no-repeat;
+			background-position: right center;
+			background-size: cover;
+			list-style: none inside;
+			position: relative;
+		}
+
+			.three-banner:before {
+				content: '';
+				position: absolute;
+				width: 100%;
+				top: 50%;
+				bottom: 50%;
+				background-color: rgba(38,50,56,0);
+				opacity: 0;
+				transition: all 200ms linear;
+			}
+
+			.three-banner:hover:before {
+				opacity: 1;
+				top: 0;
+				bottom: 0;
+				background-color: rgba(38,50,56,0.3);
+			}
+
+			.three-banner:hover .shop-header, .design-item .shop-header, .ml-coupon:hover .coupon-tittle, .ml-coupon:hover .coupon-code {
+				color: white;
+			}
+
+			.three-banner:hover .shop-tittle, .design-item .shop-tittle {
+				text-shadow: 2px 2px white;
+			}
+
+		.shop-content {
+			margin: 1em;
+			position: relative;
+		}
+
+		.shop-header {
+			color: #999;
+			font-size: 0.9em;
+		}
+
+		.shop-tittle {
+			margin-bottom: 0.5em;
+			font-size: 2em;
+			font-weight: 600;
+		}
+
+		.shop-link {
+			margin-bottom: 1.5em;
+			display: inline-block;
+			font-size: 0.7em;
+			font-weight: 600;
+			color: black;
+			border-bottom: 0.1em solid black;
+			transition: all 200ms linear;
+		}
+
+			.shop-link:hover {
+				color: white;
+				border-bottom: 0.1em solid white;
+			}
+
+		.exclusive-design {
+			height: 100%;
+			background-image: url(img/spec-offers-1.jpg);
+		}
+
+		.best-offers, .wood-stand {
+			height: 50%;
+			float: right;
+		}
+
+		.best-offers {
+			background-position: left center;
+			background-image: url(img/spec-offers-2.jpg);
+		}
+
+			.best-offers .shop-content {
+				margin-left: 50%;
+			}
+
+		.wood-stand {
+			margin-top: 1em;
+			background-image: url(img/spec-offers-3.jpg);
+		}
+
+		.our-products {
+			margin-top: 3em;
+		}
+
+		.name-tittle {
+			float: left;
+		}
+
+		.products-buttons {
+			float: right;
+			width: 50%;
+			list-style: none inside;
+		}
+
+		.button {
+			margin-left: 1em;
+			width: calc(100% / 3 - 1em);
+			float: left;
+			display: inline-block;
+			padding: 0.7em 2em;
+			font-size: 0.7em;
+			font-weight: 600;
+			border-radius: 3px;
+			text-align: center;
+			background-color: #ffd200;
+			cursor: pointer;
+			transition: all 200ms linear;
+		}
+
+			.button:hover {
+				background-color: black;
+				color: white;
+			}
+
+		.products-list {
+			margin-top: 2em;
+		}
+
+		.our-products .product-wrapper, .blog-item {
+			float: left;
+			width: calc(100% / 3 - 1em);
+			list-style: none inside;
+		}
+
+			.our-products .product-wrapper:nth-child(3n+1), .blog-item:nth-child(1) {
+				margin-right: 1.5em;
+			}
+
+			.our-products .product-wrapper:nth-child(3n+3), .blog-item:nth-child(3) {
+				margin-left: 1.5em;
+			}
+
+		.products-image:hover .offer-action .action {
+			transform: scale(1);
+		}
+
+		.offer-action {
+			position: absolute;
+			top: 1em;
+			right: 0.5em;
+			bottom: 0;
+			list-style: none inside;
+		}
+
+			.offer-action .action {
+				position: relative;
+				right: 0;
+				height: 2em;
+				width: 2em;
+				border-radius: 50%;
+				background: url('img/sprite.svg') no-repeat;
+				background-size: 25rem 25rem;
+				cursor: pointer;
+				transition-duration: 200ms;
+				transition-property: all;
+				transform: scale(0);
+			}
+
+				.offer-action .action:hover {
+					background-color: #f2c700;
+				}
+
+		.products-image {
+			position: relative;
+		}
+
+			.products-image img {
+				width: 100%;
+				transition: all 200ms linear;
+			}
+
+				.products-image img:hover {
+					box-shadow: 0 0 10px rgba(0,0,0,0.2);
+					transform: scale(1.03);
+				}
+
+		.action.buy {
+			background-position: 0 -2em;
+		}
+
+		.action.view {
+			transition-delay: 100ms;
+			background-position: -2em -2em;
+		}
+
+		.action.widen {
+			transition-delay: 200ms;
+			background-position: -4em -2em;
+		}
+
+		.action.like {
+			background-position: -6em -2em;
+			transition-delay: 300ms;
+		}
+
+		.product-name {
+			font-weight: 400;
+			font-size: 0.7em;
+		}
+
+		.product-price {
+			font-weight: 600;
+			font-size: 0.8em;
+		}
+
+			.product-price:before {
+				content: '£';
+				color: #333;
+				display: inline-block;
+			}
+
+		.rating-element {
+			font-size: 0.8em;
+		}
+
+		.star-rating[data-rating='1'] .rating-element:nth-child(-n+1), .star-rating[data-rating='2'] .rating-element:nth-child(-n+2), .star-rating[data-rating='3'] .rating-element:nth-child(-n+3), .star-rating[data-rating='4'] .rating-element:nth-child(-n+4), .star-rating[data-rating='5'] .rating-element:nth-child(-n+5) {
+			color: #ffd200;
+		}
+
+		.rating-evaluation {
+			font-size: 0.7em;
+		}
+
+		.products-leaf {
+			padding: 2em 0;
+			text-align: center;
+			clear: both;
+		}
+
+		.leaf-wrapper {
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+		}
+
+		.leaf-holder {
+			display: inline-block;
+			margin: 1em auto;
+			list-style: none inside;
+		}
+
+		.leaf-item {
+			float: left;
+			width: 3.5em;
+			padding: 0.5em 0;
+			border: 1px solid #ccc;
+			border-radius: 0.3em;
+			font-size: 0.7em;
+			font-weight: 600;
+			color: #666;
+			cursor: pointer;
+			text-align: center;
+			transition: all 200ms linear;
+		}
+
+			.leaf-item:hover {
+				background-color: #ffd200;
+				border-color: #ffd200;
+			}
+
+			.leaf-item + .leaf-item {
+				margin-left: 2em;
+			}
+
+		.shipping {
+			border: 0.2em solid #ffd200;
+			text-align: center;
+			padding: 1em 0;
+			cursor: pointer;
+		}
+
+		.shipping-header {
+			font-size: 1.4em;
+			font-weight: 600;
+			transition: all 200ms linear;
+		}
+
+			.shipping-header:hover {
+				text-shadow: -2px 2px grey;
+				color: #ffd200;
+			}
+
+		.shipping-list {
+			list-style: none inside;
+		}
+
+		.shipping-item {
+			display: inline;
+			font-size: 0.7em;
+		}
+
+			.shipping-item a {
+				color: #999;
+			}
+
+				.shipping-item a:hover {
+					color: #333;
+				}
+
+			.shipping-item + .shipping-item:before, .blog-date:after {
+				content: '∕';
+				color: black;
+				margin: 0 0.5em;
+			}
+
+		.new-design {
+			background: url(img/design-banner.jpg) no-repeat;
+			background-position: center;
+			background-size: cover;
+			position: relative;
+		}
+
+		.design-list {
+			padding: 1em;
+			list-style: none inside;
+		}
+
+		.design-item:before {
+			content: '';
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			top: 0;
+			left: 0;
+			background-color: rgba(38,50,56,0.2);
+			opacity: 0;
+			transform: scale(0.3);
+			transition: all 200ms linear;
+		}
+
+		.design-item:hover:before {
+			opacity: 1;
+			transform: scale(1);
+		}
+
+		.design-link {
+			margin-top: 3em;
+		}
+
+			.design-link:before {
+				content: '';
+				display: block;
+				float: left;
+				height: 3.5em;
+				width: 3.5em;
+				margin-top: -0.7em;
+				background: url(img/sprite.svg) no-repeat;
+				background-size: 25rem 25rem;
+				background-position: 0 -5em;
+				cursor: pointer;
+				transition: all 200ms linear;
+			}
+
+			.design-link:hover:before {
+				transform: scale(1.1);
+			}
+
+		.brands {
+			margin: 1em auto;
+		}
+
+		.brands-list {
+			list-style: none inside;
+			margin: 0 auto;
+		}
+
+			.brands-list .leaf-item {
+				border: none;
+				width: 5%;
+				padding: 0.5em 0;
+				margin-top: 2em;
+			}
+
+		.brands-item {
+			float: left;
+			margin: 0 auto;
+			color: white;
+			cursor: pointer;
+			width: 18%;
+			text-align: center;
+		}
+
+			.brands-item img {
+				transition: all 200ms linear;
+				filter: contrast(0.2);
+			}
+
+				.brands-item img:hover {
+					filter: contrast(1);
+				}
+
+		.blog {
+			margin: 1em 0 2em 0;
+		}
+
+		.blog-list {
+			margin-top: 1em;
+		}
+
+		.blog-item .menu-link:hover {
+			color: #ffd200;
+		}
+
+			.blog-item .menu-link:hover:before {
+				right: 45%;
+				background-color: #ffd200;
+			}
+
+		.post-photo {
+			width: 100%;
+			display: block;
+		}
+
+		.blog-image {
+			position: relative;
+			cursor: pointer;
+			overflow: hidden;
+			transition: all 300ms linear;
+		}
+
+			.blog-image:hover {
+				box-shadow: 0 0 0.3em rgba(0,0,0,0.2);
+			}
+
+			.blog-image:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 10%;
+				width: 10%;
+				background: url(img/blog-zoom.svg) rgba(250,250,250,0.5) no-repeat;
+				background-position: center;
+				transform-origin: left top;
+				opacity: 0;
+				transition: all 300ms linear;
+			}
+
+			.blog-image:hover:before {
+				opacity: 1;
+				height: 100%;
+				width: 100%;
+			}
+
+		.blog-comments, .blog-date {
+			font-size: 0.6em;
+			line-height: 3em;
+			color: #666;
+		}
+
+		.blog-preambula {
+			margin-top: 0.7em;
+			font-size: 0.6em;
+			line-height: 1.5em;
+			height: 6em;
+			overflow: hidden;
+			color: #666;
+		}
+	</style>
+</head>
+<body>
+<main>
+
+	<section class="top-menu">
+		<ul class="holder">
+			<li class="top-tittle"><a class="menu-link">HOME</a></li>
+			<li class="top-tittle"><a class="menu-link">BLOG</a></li>
+			<li class="top-tittle"><a class="menu-link">CONTACTS</a></li>
+			<li class="top-tittle"><a class="menu-link">AFFILIATE</a></li>
+			<li class="top-tittle"><a class="menu-link">BRANDS</a></li>
+			<li class="top-tittle"><a class="menu-link">SPECIALS</a></li>
+			<li class="top-tittle"><a class="menu-link">SITEMAP</a></li>
+			<li class="top-tittle cart"><a class="menu-link">MY CART</a></li>
+			<li class="top-tittle account">
+				<a class="menu-link">ACCOUNT</a>
+				<ul class="submenu">
+					<li class="submenu-tittle"><a class="submenu-link">Register</a></li>
+					<li class="submenu-tittle"><a class="submenu-link">Login</a></li>
+					<li class="submenu-tittle"><a class="submenu-link">Wihs list</a></li>
+					<li class="submenu-tittle"><a class="submenu-link">Checkout</a></li>
+					<li class="submenu-tittle">
+						<a class="submenu-link">Language</a>
+						<ul class="submenu-flag">
+							<li class="flag ru"><a></a></li>
+							<li class="flag fr"><a></a></li>
+							<li class="flag kz"><a></a></li>
+						</ul>
+					</li>
+					<li class="submenu-tittle">
+						<a class="submenu-link">Currency</a>
+						<ul class="submenu-currency">
+							<li class="currency-money dollar"><a>$</a></li>
+							<li class="currency-money euro"><a class="">€</a></li>
+							<li class="currency-money choosen pound"><a class="">£</a></li>
+							<li class="currency-money yen"><a class="">¥</a></li>
+							<li class="currency-money franc"><a class="">₣</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+
+	<section class="promo-menu">
+		<div class="holder">
+			<a class="promo-logo">
+				<img src="img/main-logo.png" />
+			</a>
+			<ul class="promo-list">
+				<li class="promo-tittle ">
+					<a class="link money">100%
+						<br />
+						Moneyback</a>
+				</li>
+				<li class="promo-tittle">
+					<a class="link anytime">For Anytime
+						<br />
+						Queries?</a>
+				</li>
+				<li class="promo-tittle">
+					<a class="link user">New User
+						<br />
+						Offer</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="banner-wrapper">
+		<section class="holder">
+			<aside class="menu-left">
+				<nav class="menu-links">
+					<header class="links-name">
+						<h4>ALL CATEGORIES</h4>
+					</header>
+					<ul class="categories">
+						<li class="category-item">
+							<a href="#" class="category-link consist-list">Our Store</a><ul class="pop-up-list">
+								<li class="pop-up-list-item">
+									<a class="category-link" href="#">CASUAL SHOES</a>
+									<ul>
+										<li><a class="category-link secondary-item" href="#">Accusamus Iusto</a></li>
+										<li><a class="category-link secondary-item" href="#">Nulla Venenatis</a></li>
+										<li><a class="category-link secondary-item" href="#">Phasellus Tempu</a></li>
+									</ul>
+								</li>
+								<li class="pop-up-list-item">
+									<a class="category-link" href="#">FORMAL SHOES</a>
+									<ul>
+										<li><a class="category-link secondary-item" href="#">Temporibus Autem</a></li>
+										<li><a class="category-link secondary-item" href="#">Ullamco Laboris</a></li>
+										<li><a class="category-link secondary-item" href="#">Voluptatem Sequi</a></li>
+									</ul>
+								</li>
+								<li class="pop-up-list-item">
+									<a class="category-link" href="#">SPORTS SHOES</a>
+									<ul>
+										<li><a class="category-link secondary-item" href="#">Dictum Gravida</a></li>
+										<li><a class="category-link secondary-item" href="#">Rem Aperiam</a></li>
+										<li><a class="category-link secondary-item" href="#">Ridiculus Mus</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="category-item"><a class="category-link" href="#">Top Wear</a></li>
+						<li class="category-item"><a class="category-link" href="#">Winter Wear</a></li>
+						<li class="category-item"><a class="category-link" href="#">Summerwear</a></li>
+						<li class="category-item"><a class="category-link" href="#">Hats & Caps</a></li>
+						<li class="category-item"><a class="category-link" href="#">Men's Watches</a></li>
+						<li class="category-item"><a class="category-link" href="#">Womens Watches</a></li>
+						<li class="category-item"><a class="category-link" href="#">Saree Combos</a></li>
+						<li class="category-item"><a class="category-link" href="#">Bean Bags</a></li>
+						<li class="category-item"><a class="category-link" href="#">Rainwear</a></li>
+						<li class="category-item"><a class="category-link" href="#">Dignissim</a></li>
+						<li class="category-item"><a class="category-link" href="#">Aenean</a></li>
+					</ul>
+				</nav>
+			</aside>
+
+			<section class="main-side banner">
+				<ul class="banner-content">
+					<li>
+						<img class="banner-img frame-1" src="img/frame-1.jpg" />
+					</li>
+					<li>
+						<img class="banner-img frame-2" src="img/frame-2.jpg" />
+					</li>
+					<li>
+						<img class="banner-img frame-3" src="img/frame-3.jpg" />
+					</li>
+				</ul>
+			</section>
+		</section>
+	</section>
+
+	<section class="content-wrapper">
+		<div class="holder">
+			<aside class="menu-left">
+				<section class="ml-latest-products">
+					<header>
+						<h3>Latest Products</h3>
+					</header>
+
+					<ul class="products-list">
+						<li class="product-wrapper">
+							<div class="products-image">
+								<img src="img/offer-1.jpg" />
+							</div>
+
+							<div class="product-description">
+								<div class="product-rating">
+									<div class="star-rating" data-rating="4">
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-evaluation">4.5</span>
+									</div>
+								</div>
+								<div class="product-name">Aenean Dignissim</div>
+								<div class="product-price">74.73</div>
+							</div>
+						</li>
+
+						<li class="product-wrapper">
+							<div class="products-image">
+								<img src="img/offer-2.jpg" />
+							</div>
+
+							<div class="product-description">
+								<div class="product-rating">
+									<div class="star-rating" data-rating="4">
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-evaluation">4.5</span>
+									</div>
+								</div>
+								<div class="product-name">Aenean Dignissim</div>
+								<div class="product-price">74.73</div>
+							</div>
+						</li>
+						<li class="product-wrapper">
+							<div class="products-image">
+								<img src="img/offer-3.jpg" />
+							</div>
+
+							<div class="product-description">
+								<div class="product-rating">
+									<div class="star-rating" data-rating="4">
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-element">★</span>
+										<span class="rating-evaluation">4.5</span>
+									</div>
+								</div>
+								<div class="product-name">Aenean Dignissim</div>
+								<div class="product-price">74.73</div>
+							</div>
+						</li>
+					</ul>
+				</section>
+
+				<section class="ml-coupon">
+					<div class="coupon-body">
+						<div class="coupon-content">
+							<span class="coupon-title">COUPON</span>
+							<span class="discount">25% OFF</span>
+							<span class="coupon-code">COUPON CODE:<span class="promocode">"BIGSALE10OFF"</span></span>
+
+						</div>
+					</div>
+				</section>
+
+				<section class="ml-deals">
+					<header>
+						<h3 class="name-tittle">Deals</h3>
+					</header>
+					<ul class="leaf-holder">
+						<li class="leaf-item">←</li>
+						<li class="leaf-item">→</li>
+					</ul>
+
+					<ul class="products-list">
+						<li class="product-wrapper">
+							<div class="products-image">
+								<img src="img/offer-13.jpg" />
+								<ul class="offer-action">
+									<li class="action buy"></li>
+									<li class="action view"></li>
+									<li class="action widen"></li>
+									<li class="action like "></li>
+								</ul>
+							</div>
+
+							<div class="product-description">
+								<div class="product-rating">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4.5</span>
+										</div>
+									</div>
+								</div>
+								<div class="product-name">Aenean Dignissim</div>
+								<div class="product-price special-price">49.15</div>
+								<span class="last-price">98.56</span>
+								<div class="timer">
+									<ul class="timer-holder">
+										<li class="time hours">
+											<div class="time-value"><span class="units"></span></div>
+											<span class="timer-measure">hours</span>
+										</li>
+										<li class="time minutes">
+											<div class="time-value"><span class="tens"></span><span class="units"></span></div>
+											<span class="timer-measure">min</span>
+										</li>
+										<li class="time seconds">
+											<div class="time-value"><span class="tens"></span><span class="units"></span></div>
+											<span class="timer-measure">sec</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</section>
+
+				<section class="ml-catagory">
+					<div class="cat-select">
+						Select catagory
+					</div>
+					<ul class="catagories">
+						<li class="catagory-item">Eirmod</li>
+						<li class="catagory-item">Summo</li>
+						<li class="catagory-item">Fierent</li>
+						<li class="catagory-item">Aliquid</li>
+						<li class="catagory-item">Impetus</li>
+						<li class="catagory-item">Oportere</li>
+						<li class="catagory-item">Graeco</li>
+						<li class="catagory-item">Nemore</li>
+					</ul>
+				</section>
+
+				<section class="ml-product-description">
+					<div class="descrip material">
+						<header class="descrip-header">
+							<h4>Material</h4>
+						</header>
+						<ul>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<img class="descrip-content" src="img/wood-material.jpg" />
+								</div>
+								Wood
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<img class="descrip-content" src="img/plastik-material.jpg" />
+								</div>
+								Plastik
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<img class="descrip-content" src="img/metal-material.jpg" />
+								</div>
+								Metal
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<img class="descrip-content" src="img/glass-material.jpg" />
+								</div>
+								Glass
+							</li>
+						</ul>
+					</div>
+
+					<div class="descrip color">
+						<header class="descrip-header">
+							<h4>Color</h4>
+						</header>
+						<ul>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content red"></div>
+								</div>
+								Red
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content green"></div>
+								</div>
+								Green
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content blue"></div>
+								</div>
+								Blue
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content violet"></div>
+								</div>
+								Violet
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content orange"></div>
+								</div>
+								Orange
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content gray"></div>
+								</div>
+								Gray
+							</li>
+						</ul>
+					</div>
+
+					<div class="descrip vendor">
+						<header class="descrip-header">
+							<h4>Vendor</h4>
+						</header>
+						<ul>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content apple"></div>
+								</div>
+								Apple
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content yandex"></div>
+								</div>
+								Yandex
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content microsoft"></div>
+								</div>
+								Microsoft
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content google"></div>
+								</div>
+								Google
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content ibm"></div>
+								</div>
+								IBM
+							</li>
+							<li class="descrip-attr">
+								<div class="descrip-content-holder">
+									<div class="descrip-content huawei"></div>
+								</div>
+								Huawei
+							</li>
+						</ul>
+					</div>
+
+					<div class="descrip delivery">
+						<header class="descrip-header">
+							<h4>Delivery</h4>
+						</header>
+						<ul>
+							<li class="descrip-way choosen">Free Shipping</li>
+							<li class="descrip-way choosen">Pickup</li>
+							<li class="descrip-way">Shop service</li>
+						</ul>
+					</div>
+				</section>
+
+				<section class="ml-features">
+					<header>
+						<h3>Features</h3>
+					</header>
+					<ul class="features">
+						<li class="feature-entry">
+							<div class="feature ship">
+								<p class="feat-name">Free Shipping</p>
+								<p class="feat-text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+							</div>
+						</li>
+						<li class="feature-entry">
+							<div class="feature money">
+								<p class="feat-name">Money Back</p>
+								<p class="feat-text">Ut enim ad minim veniam quis nostrud exercitation ullamco</p>
+							</div>
+						</li>
+						<li class="feature-entry">
+							<div class="feature support">
+								<p class="feat-name">24 × 7 Support</p>
+								<p class="feat-text">Duis aute irure dolor in reprehenderit in voluptate velit </p>
+							</div>
+						</li>
+					</ul>
+				</section>
+
+				<section class="ml-reviews">
+					<header class="reviews-header">
+						<h3>Reviews</h3>
+					</header>
+					<ul class="reviews-list">
+						<li class="review-entry">
+							<figure class="client-photo-wrapper">
+								<img class="client-photo" src="img/person-1.jpg" />
+							</figure>
+							<p class="client-name">MACK JECKNO</p>
+							<p class="client-prof">Front-End Developer</p>
+							<blockquote class="review-text">
+								Excellent Company!
+									I will definitely work with them again.
+									Good communication, good work, on time!
+									I am very happy with their help.
+							</blockquote>
+						</li>
+						<li class="review-entry">
+							<figure class="client-photo-wrapper">
+								<img class="client-photo" src="img/person-2.jpg" />
+							</figure>
+							<p class="client-name">LUIES CHARLS</p>
+							<p class="client-prof">Back-End Developer</p>
+							<blockquote class="review-text">
+								There are many variations of passages of Lorem Ipsum available,
+									but the majority have alteration in some form, by injected humour.
+							</blockquote>
+						</li>
+						<li class="review-entry">
+							<figure class="client-photo-wrapper">
+								<img class="client-photo" src="img/person-3.jpg" />
+							</figure>
+							<p class="client-name">JECOB GOECKNO</p>
+							<p class="client-prof">Financer</p>
+							<blockquote class="review-text">
+								Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+									totam rem aperiam, eaque ipsa quae.
+							</blockquote>
+						</li>
+					</ul>
+				</section>
+			</aside>
+
+			<section class="content-right">
+				<div class="products-holder">
+
+					<section class="special-products">
+						<ul class="special-holder">
+							<li class="three-banner exclusive-design">
+								<div class="shop-content">
+									<span class="shop-header">Special Products</span>
+									<h4 class="shop-tittle">Exclusive Design</h4>
+									<a class="shop-link" href="#">SHOP NOW</a>
+								</div>
+							</li>
+							<li class="three-banner best-offers">
+								<div class="shop-content">
+									<span class="shop-header">50% off</span>
+									<h4 class="shop-tittle">Best Offers</h4>
+									<a class="shop-link" href="#">SHOP NOW</a>
+								</div>
+							</li>
+							<li class="three-banner wood-stand">
+								<div class="shop-content">
+									<span class="shop-header">Best Discount</span>
+									<h4 class="shop-tittle">Wood Stand</h4>
+									<a class="shop-link" href="#">SHOP NOW</a>
+								</div>
+							</li>
+						</ul>
+					</section>
+
+					<section class="our-products">
+						<header class="our-products-header">
+							<h3 class="name-tittle">Our Products</h3>
+							<ul class="products-buttons">
+								<li><span class="button">BESTSELLER</span></li>
+								<li><span class="button">LATEST</span></li>
+								<li><span class="button">FEATURED</span></li>
+							</ul>
+						</header>
+
+						<ul class="products-list">
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-4.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like "></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4.5</span>
+										</div>
+									</div>
+									<div class="product-name">Aenean Dignissim</div>
+									<div class="product-price">74.73</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-5.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4</span>
+										</div>
+									</div>
+									<div class="product-name">Consectetur Adipiscing</div>
+									<div class="product-price">50.80</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-6.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4.5</span>
+										</div>
+									</div>
+									<div class="product-name">Consequat Nibh</div>
+									<div class="product-price">65.99</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-7.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="5">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">5</span>
+										</div>
+									</div>
+									<div class="product-name">Convallis Laoreet</div>
+									<div class="product-price">74.00</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-8.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="3">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">3.5</span>
+										</div>
+									</div>
+									<div class="product-name">Qui Blanditiis</div>
+									<div class="product-price">74.73</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-9.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4.8</span>
+										</div>
+									</div>
+									<div class="product-name">Ratione Voluptatem</div>
+									<div class="product-price">94.99</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-10.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4.5</span>
+										</div>
+									</div>
+									<div class="product-name">Pellentesque Dolor</div>
+									<div class="product-price">67.50</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-11.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4.3</span>
+										</div>
+									</div>
+									<div class="product-name">Exercitation Ullamco</div>
+									<div class="product-price">199.50</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-12.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4</span>
+										</div>
+									</div>
+									<div class="product-name">Sunt In Culpa</div>
+									<div class="product-price">150.23</div>
+								</div>
+							</li>
+						</ul>
+
+						<section class="products-leaf">
+							<div class="leaf-wrapper">
+								<ul class="leaf-holder">
+									<li class="leaf-item">←</li>
+									<li class="leaf-item">1</li>
+									<li class="leaf-item">2</li>
+									<li class="leaf-item">3</li>
+									<li class="leaf-item">4</li>
+									<li class="leaf-item">5</li>
+									<li class="leaf-item">...</li>
+									<li class="leaf-item">13</li>
+									<li class="leaf-item">14</li>
+									<li class="leaf-item">15</li>
+									<li class="leaf-item">16</li>
+									<li class="leaf-item">17</li>
+									<li class="leaf-item">→</li>
+								</ul>
+							</div>
+						</section>
+					</section>
+
+					<section class="shipping">
+						<div class="shipping-holder">
+							<span class="shipping-header">FREE SHIPPING ON ALL ORDERS</span>
+							<ul class="shipping-list">
+								<li class="shipping-item"><a href="#">For all orders £100 and above</a></li>
+								<li class="shipping-item"><a href="#">We only accept within 72 hour for returning</a></li>
+								<li class="shipping-item"><a href="#">Secure payment</a></li>
+							</ul>
+						</div>
+					</section>
+
+					<section class="our-products">
+						<header class="our-products-header">
+							<h3 class="name-tittle">Best Products</h3>
+						</header>
+
+						<ul class="products-list">
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-13.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like "></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4.5</span>
+										</div>
+									</div>
+									<div class="product-name">Aenean Dignissim</div>
+									<div class="product-price">74.73</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-14.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4.5</span>
+										</div>
+									</div>
+									<div class="product-name">Aenean Dignissim</div>
+									<div class="product-price">74.73</div>
+								</div>
+							</li>
+
+							<li class="product-wrapper">
+								<div class="products-image">
+									<img src="img/offer-15.jpg" />
+									<ul class="offer-action">
+										<li class="action buy"></li>
+										<li class="action view"></li>
+										<li class="action widen"></li>
+										<li class="action like"></li>
+									</ul>
+								</div>
+
+								<div class="product-description">
+									<div class="product-rating">
+										<div class="star-rating" data-rating="4">
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-element">★</span>
+											<span class="rating-evaluation">4.5</span>
+										</div>
+									</div>
+									<div class="product-name">Aenean Dignissim</div>
+									<div class="product-price">74.73</div>
+								</div>
+							</li>
+						</ul>
+
+						<section class="products-leaf">
+							<div class="leaf-wrapper">
+								<ul class="leaf-holder">
+									<li class="leaf-item">←</li>
+									<li class="leaf-item">1</li>
+									<li class="leaf-item">2</li>
+									<li class="leaf-item">3</li>
+									<li class="leaf-item">4</li>
+									<li class="leaf-item">5</li>
+									<li class="leaf-item">...</li>
+									<li class="leaf-item">13</li>
+									<li class="leaf-item">14</li>
+									<li class="leaf-item">15</li>
+									<li class="leaf-item">16</li>
+									<li class="leaf-item">17</li>
+									<li class="leaf-item">→</li>
+								</ul>
+							</div>
+						</section>
+					</section>
+
+					<section class="new-design">
+						<ul class="design-list">
+							<li class="design-item">
+								<div class="shop-content">
+									<span class="shop-header">New Design</span>
+									<h4 class="shop-tittle">For Home Decor</h4>
+									<div class="design-link">
+										<a class="shop-link" href="#">VIEW MORE VIDEOS</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</section>
+
+					<section class="brands">
+						<ul class="brands-list">
+							<li class="leaf-item">←</li>
+							<li class="brands-item">
+								<img src="img/client-1.png" />
+							</li>
+							<li class="brands-item">
+								<img src="img/client-2.png" />
+							</li>
+							<li class="brands-item">
+								<img src="img/client-3.png" />
+							</li>
+							<li class="brands-item">
+								<img src="img/client-4.png" />
+							</li>
+							<li class="brands-item">
+								<img src="img/client-5.png" />
+							</li>
+							<li class="leaf-item">→</li>
+						</ul>
+					</section>
+
+					<section class="blog">
+						<header class="our-products-header">
+							<h3 class="name-tittle">From The Blog</h3>
+						</header>
+						<ul class="blog-list">
+							<li class="blog-item">
+								<div class="blog-image">
+									<img class="post-photo" src="img/post-1.jpg">
+								</div>
+								<div class="blog-data">
+									<time class="blog-date">26 May 2019</time>
+									<span class="blog-comments">12 - comments</span>
+								</div>
+								<h5><a class="menu-link">Sed ut perspiciatis</a></h5>
+								<p class="blog-preambula">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+							</li>
+
+							<li class="blog-item">
+								<div class="blog-image">
+									<img class="post-photo" src="img/post-2.jpg">
+								</div>
+								<div class="blog-data">
+									<time class="blog-date">26 May 2019</time>
+									<span class="blog-comments">12 - comments</span>
+								</div>
+								<h5 class="menu-link">Sed ut perspiciatis</h5>
+								<p class="blog-preambula">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+							</li>
+
+							<li class="blog-item">
+								<div class="blog-image">
+									<img class="post-photo" src="img/post-3.jpg">
+								</div>
+								<div class="blog-data">
+									<time class="blog-date">26 May 2019</time>
+									<span class="blog-comments">12 - comments</span>
+								</div>
+								<h5 class="menu-link">Sed ut perspiciatis</h5>
+								<p class="blog-preambula">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+							</li>
+						</ul>
+					</section>
+				</div>
+			</section>
+		</div>
+	</section>
+</main>
+</body>
+</html>
